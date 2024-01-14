@@ -1,4 +1,5 @@
 """
+OS module is used for clearing the terminal.
 """
 from battleships import Battleships, wipe_terminal
 
@@ -6,9 +7,17 @@ from battleships import Battleships, wipe_terminal
 class Play:
     """
     Play's a game between two Battleship objects.
-    Player vs Computer.
-    Displays the rules.
+    Player vs Computer.    
     """
+
+    def __init__(self):
+        # Battleship object representing the human player.
+        self.player = Battleships()
+        # Battleship object representing the computer.
+        self.computer = Battleships()
+        # Game message - Updated throughout(Player turns, game status etc.)
+        self.game_message = 'Fire your missile !'
+        self.begin_game()
 
     def rules(self):
         """
