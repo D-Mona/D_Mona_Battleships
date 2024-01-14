@@ -218,4 +218,4 @@ class Battleships:
             self.choose_ship_placement()
 
 
-# player = Battleships()
+

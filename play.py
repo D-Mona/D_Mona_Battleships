@@ -5,6 +5,7 @@ until there has been keyboard interaction from the user.
 """
 from time import sleep
 import random
+import sys
 from battleships import Battleships, wipe_terminal
 
 
@@ -227,9 +228,9 @@ class Play:
                     outcome = 'Hit !'
                 elif self.computer.player_board.get(key) == 'W':
                     self.player.guess_board.update({key: 'O'})
-                    outcome = 'Missed !'
+                    outcome = 'missed.'
                 break
-        self.game_message = f"You fired at coordinates {key} and {outcome} !"
+        self.game_message = f"You fired at coordinates {key} and {outcome}"
         self.game_display()
 
     def bot_fire(self):
@@ -251,12 +252,10 @@ class Play:
                 if self.player.player_board.get(key) == '^':
                     self.player.player_board.update({key: '*'})
                     self.player.ships -= 1
-                    self.game_message = f"Bot fired at coordinates {
-                        key} and HIT !"
+                    self.game_message = f"Bot fired at coordinates {key} and HIT !"
                 elif self.player.player_board.get(key) == 'W':
                     self.player.player_board.update({key: 'O'})
-                    self.game_message = f"Bot fired at coordinates {
-                        key} and missed"
+                    self.game_message = f"Bot fired at coordinates {key} and missed."
                 break
         self.game_display()
 
@@ -325,5 +324,5 @@ class Play:
         Quit the game.
         """
         wipe_terminal()
-        print('')
         print('Goodbye..')
+        sys.exit()
