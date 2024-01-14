@@ -49,6 +49,23 @@ class Play:
         self.player.choose_ship_placement()
         self.play_game()
 
+    def game_display(self):
+        """
+        Displays the two game boards and their respective ships remaining.
+        Displays the game message.
+        """
+        wipe_terminal()
+        self.player.guess_board_display()
+        print('')
+        print(f'Enemy Ships: {self.computer.ships}')
+        print('')
+        self.player.player_board_display()
+        print('')
+        print(f'Friendly Ships: {self.player.ships}')
+        print('')
+        print(self.game_message)
+        print('')
+
     def rules(self):
         """
         Displays the rules of the game.
