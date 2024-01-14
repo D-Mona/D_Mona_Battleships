@@ -44,7 +44,7 @@ class Battleships:
         """
         wipe_terminal()
         user_input = input(
-            'Enter S, M or L - Select Small, Medium or Large game mode.\n')
+            'Enter S, M or L to select a Small, Medium or Large game mode.\n')
         user_input = user_input.upper()
         if user_input in ('S', 'M', 'L'):
             cls.board_size = user_input
