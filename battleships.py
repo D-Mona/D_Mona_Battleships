@@ -72,3 +72,43 @@ class Battleships:
             for letter in range(self.dimensions[1]):
                 board.update({f'{letters[letter]}{numbers[number]}': 'W'})
         return board
+
+    def player_board_display(self):
+        """        
+        Displays a players board and their ship locations.    
+        Also displayed will be the opponents hits and missed.            
+        The board is stripped of all unwanted characters for display.
+        """
+        player_board = self.player_board
+        display_board = []
+        for item in player_board:
+            display_board.append(player_board.get(item))
+        print(self.letter_overlay)
+        for num in range(self.dimensions[0]):
+            rows = []
+            rows.append(num + 1)
+            for num in range(self.dimensions[1]):
+                rows.append(display_board.pop(0))
+            print(str(rows).strip('[').strip(']').replace(
+                ',', '').replace("'", ''))
+            rows.clear()
+
+    def guess_board_display(self):
+        """
+        The guess board for an opponent.
+        This board will contain all of a players's hits and misses.
+        The board is stripped of all unwanted characters for display.
+        """
+        guess_board = self.guess_board
+        display_board = []
+        for item in guess_board:
+            display_board.append(guess_board.get(item))
+        print(self.letter_overlay)
+        for num in range(self.dimensions[0]):
+            rows = []
+            rows.append(num + 1)
+            for num in range(self.dimensions[1]):
+                rows.append(display_board.pop(0))
+            print(str(rows).strip('[').strip(']').replace(
+                ',', '').replace("'", ''))
+            rows.clear()
