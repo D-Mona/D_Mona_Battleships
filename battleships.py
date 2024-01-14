@@ -31,3 +31,27 @@ class Battleships:
         self.player_board = {}
         # An opponent's board containing their guesses and outcomes.
         self.guess_board = {}
+
+    def create_board(self):
+        """
+        Create a board with attributes ranging from small to large.        
+        """
+        size = self.board_size
+        if size == 'S':
+            self.dimensions = (2, 4)
+            self.ships = 2
+            self.letter_overlay = '  A B C D'
+            self.player_board = self.populate_board()
+            self.guess_board = self.populate_board()
+        elif size == 'M':
+            self.dimensions = (4, 8)
+            self.ships = 4
+            self.letter_overlay = '  A B C D E F G H'
+            self.player_board = self.populate_board()
+            self.guess_board = self.populate_board()
+        elif size == 'L':
+            self.dimensions = (5, 10)
+            self.ships = 5
+            self.letter_overlay = '  A B C D E F G H I J'
+            self.player_board = self.populate_board()
+            self.guess_board = self.populate_board()
