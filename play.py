@@ -258,6 +258,28 @@ class Play:
                 break
         self.game_display()
 
+    def play_game(self):
+        """
+        The game loop.
+        Runs until one of the players have no ships remaining.        
+        """
+        winner = ''
+        while True:
+            if self.player.ships > 0:
+                self.game_display()
+                self.choose_fire_mode()
+                sleep(3)
+                if self.computer.ships > 0:
+                    self.bot_fire()
+                    sleep(3)
+                elif self.computer.ships == 0:
+                    winner = 'You'
+                    break
+            else:
+                winner = 'The Computer'
+                break
+        self.game_over(winner)
+
     def game_setup(self):
         """
         """
