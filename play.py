@@ -66,6 +66,23 @@ class Play:
         print(self.game_message)
         print('')
 
+    def choose_fire_mode(self):
+        """"
+        A choice of automatic or manual fire modes.
+        Forces inputs of A or M.
+        """
+        self.game_display()
+        user_input = input(
+            'Enter A to auto fire / Enter M to input your coordinates')
+        user_input = user_input.upper()
+        if user_input in ('A', 'M'):
+            if user_input == 'A':
+                self.auto_fire()
+            elif user_input == 'M':
+                self.manual_fire()
+        else:
+            self.choose_fire_mode()
+
     def rules(self):
         """
         Displays the rules of the game.
