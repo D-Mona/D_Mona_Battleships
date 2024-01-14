@@ -1,5 +1,6 @@
 """
-Random module is used for generating random coordinates.
+random is used for generating random coordinates.
+os is used to clear the terminal.
 """
 import random
 import os

@@ -1,7 +1,7 @@
 """
-OS module is used for clearing the terminal.
-Wait from the keyboard module is used for halting program execution
-until there has been keyboard interaction from the user.
+OS is used for clearing the terminal.
+time is used to delay the resluts of the shots
+sys is to cleanly exit the program.
 """
 from time import sleep
 import random
