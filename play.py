@@ -77,6 +77,3 @@ class Play:
         """
         """
 
-
-# play = Play()
-# play.rules()

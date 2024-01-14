@@ -34,9 +34,27 @@ class Battleships:
         # An opponent's board containing their guesses and outcomes.
         self.guess_board = {}
 
+    @classmethod
+    def set_board_size(cls):
+        """
+        Class method for setting the game size.
+        The computer will auto-build a board to the correct size.
+        Forces inputs of S, M or L.
+        """
+        wipe_terminal()
+        user_input = input(
+            'Enter S, M or L - Select Small, Medium or Large game mode.\n')
+        user_input = user_input.upper()
+        if user_input in ('S', 'M', 'L'):
+            cls.board_size = user_input
+            wipe_terminal()
+        else:
+            wipe_terminal()
+            cls.set_board_size()
+
     def create_board(self):
         """
-        Create a board with attributes ranging from small to large.        
+        A board with attributes ranging from small to large.        
         """
         size = self.board_size
         if size == 'S':
@@ -198,3 +216,4 @@ class Battleships:
         else:
             wipe_terminal()
             self.choose_ship_placement()
+
