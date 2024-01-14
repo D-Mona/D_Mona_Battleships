@@ -1,9 +1,13 @@
 """
 """
+from battleships import Battleships, wipe_terminal
 
 
 class Play:
     """
+    Play's a game between two Battleship objects.
+    Player vs Computer.
+    Displays the rules.
     """
 
     def rules(self):
@@ -13,7 +17,7 @@ class Play:
         section of the rules.
         User can read the rules again, or to begin a game.
         """
-        #wipe_terminal()
+        wipe_terminal()
         print('General Rules:')
         print('')
         print('You will place a given amount of your fleets ships upon a grid.\n'
@@ -24,7 +28,7 @@ class Play:
               "The first player to destroy all of the enemy's ships is declared the winner.\n")
         print('')
         input('Press Enter to learn about the game board.')
-        #wipe_terminal()
+        wipe_terminal()
         print('You will have a choice of 3 game sizes.')
         print('Small, Medium or Large.\n')
         print('A Medium sized game board is below:')
@@ -42,7 +46,7 @@ class Play:
               )
         print('')
         input('Press Enter to learn how to place your ships.')
-        #wipe_terminal()
+        wipe_terminal()
         print('Ship placements and firing attempts on the opposition work in the same way. \n'
               'Automatic ship placements and firing attempts are always available.\n'
               )
@@ -72,4 +76,7 @@ class Play:
     def game_setup(self):
         """
         """
-        
+
+
+play = Play()
+play.rules()
