@@ -1,6 +1,8 @@
 """
-OS module is used for clearing the terminal.
+random is used for generating random keys.
 """
+from time import sleep
+import random
 from battleships import Battleships, wipe_terminal
 
 
@@ -197,6 +199,38 @@ class Play:
                 input('Press Enter to try again.')
                 self.manual_fire()
             break
+
+    def auto_fire(self):
+        """
+        Automatically selects a turn for a player.
+        Will only fire upon a position that is unknown.
+        Updates game boards, game message and ships remaining.
+        """
+        keys = []
+        outcome = ''
+        # Create a list of keys to pick one from random.
+        for item in self.computer.player_board:
+            keys.append(item)
+        while True:
+            # Repeat with a key until an unknown position is found.
+            key = random.choice(keys)
+            if self.player.guess_board.get(key) not in ('O', '*'):
+                wipe_terminal()
+                self.game_message = 'Firing your missile...'
+                self.game_display()
+                sleep(3)
+                if self.computer.player_board.get(key) == '^':
+                    self.player.guess_board.update({key: '*'})
+                    self.computer.ships -= 1
+                    outcome = 'Hit !'
+                elif self.computer.player_board.get(key) == 'W':
+                    self.player.guess_board.update({key: 'O'})
+                    outcome = 'Missed !'
+                break
+        self.game_message = f"You fired at coordinates {key} and {outcome} !"
+        self.game_display()
+
+
 
     def game_setup(self):
         """
