@@ -280,6 +280,44 @@ class Play:
                 break
         self.game_over(winner)
 
+def game_over(self, winner):
+        """
+        Displays the game winner message.
+        Can reset the previous game, allowing for new ship placements.
+        Can start a new game setup, allowing different game sizes.
+        Quits the game.
+        """
+        self.game_message = f'{winner} won the game !'
+        self.game_display()
+        user_input = input(
+            'Enter R to reset that game / Enter S for a new game setup / Enter Q to quit'
+        )
+        user_input = user_input.upper()
+        if user_input in ('R', 'S', 'Q'):
+            if user_input == 'R':
+                # Resets the previous game.
+                self.player.player_board = self.player.populate_board()
+                self.player.guess_board = self.player.populate_board()
+                self.computer.player_board = self.player.populate_board()
+                self.computer.guess_board = self.computer.populate_board()
+                self.player.ships = self.player.dimensions[0]
+                self.computer.ships = self.computer.dimensions[0]
+                self.game_message = 'Place your ships !'
+                self.game_display()
+                self.player.choose_ship_placement()
+                self.game_message = 'Begin !'
+                self.play_game()
+            elif user_input == 'S':
+                # Creates a new game.
+                self.player = Battleships()
+                self.computer = Battleships()
+                self.game_message = 'Fire your missile !'
+                self.game_setup()
+            elif user_input == 'Q':
+                self.quit()
+        else:
+            self.game_over(winner)
+
     def game_setup(self):
         """
         """
