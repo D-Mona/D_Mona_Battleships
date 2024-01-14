@@ -37,6 +37,18 @@ class Play:
         else:
             self.begin_game()
 
+    def game_setup(self):
+        """
+        Setup of the computer and player Battleships.
+        Once the board size is set the computer can auto build a board.
+        """
+        Battleships.set_board_size()
+        self.player.create_board()
+        self.computer.create_board()
+        self.computer.auto_ship_placements()
+        self.player.choose_ship_placement()
+        self.play_game()
+
     def rules(self):
         """
         Displays the rules of the game.
