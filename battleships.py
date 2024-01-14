@@ -112,3 +112,19 @@ class Battleships:
             print(str(rows).strip('[').strip(']').replace(
                 ',', '').replace("'", ''))
             rows.clear()
+
+    def auto_ship_placements(self):
+        """
+        Sets random placements for all of a players ships.
+        Will only place a ship where there is not one already placed.
+        """
+        player_board = self.player_board
+        keys = []
+        counter = 0
+        while counter < self.ships:
+        for item in player_board:
+            keys.append(item)
+        key = random.choice(keys)
+        if self.player_board.get(key) != '^':
+            counter += 1
+            self.player_board.update({key: '^'})
