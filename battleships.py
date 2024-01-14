@@ -128,3 +128,18 @@ class Battleships:
         if self.player_board.get(key) != '^':
             counter += 1
             self.player_board.update({key: '^'})
+
+    def invalid_coordinates(self, key):
+        """
+        Displays some help to the user when invalid coordinates are entered.
+        """
+        print(f"The coordinates '{key}' you entered are invalid !\n"
+              'Please check your board for valid coordinates..\n'
+              '\n'
+              'Example below: All the coordinates from A1 to D2 are valid.\n')
+        print('  A B C D\n'
+              '1 W W W W\n'
+              '2 W W W W\n')
+        print('Coordinates must have the form of letter then number, as above.\n'
+              'Letters are not case sensitive.')
+        print('')
