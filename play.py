@@ -37,52 +37,6 @@ class Play:
         else:
             self.begin_game()
 
-    def game_setup(self):
-        """
-        Setup of the computer and player Battleships.
-        Once the board size is set the computer can auto build a board.
-        """
-        Battleships.set_board_size()
-        self.player.create_board()
-        self.computer.create_board()
-        self.computer.auto_ship_placements()
-        self.player.choose_ship_placement()
-        self.play_game()
-
-    def game_display(self):
-        """
-        Displays the two game boards and their respective ships remaining.
-        Displays the game message.
-        """
-        wipe_terminal()
-        self.player.guess_board_display()
-        print('')
-        print(f'Enemy Ships: {self.computer.ships}')
-        print('')
-        self.player.player_board_display()
-        print('')
-        print(f'Friendly Ships: {self.player.ships}')
-        print('')
-        print(self.game_message)
-        print('')
-
-    def choose_fire_mode(self):
-        """"
-        A choice of automatic or manual fire modes.
-        Forces inputs of A or M.
-        """
-        self.game_display()
-        user_input = input(
-            'Enter A to auto fire / Enter M to input your coordinates')
-        user_input = user_input.upper()
-        if user_input in ('A', 'M'):
-            if user_input == 'A':
-                self.auto_fire()
-            elif user_input == 'M':
-                self.manual_fire()
-        else:
-            self.choose_fire_mode()
-
     def rules(self):
         """
         Displays the rules of the game.
@@ -145,6 +99,104 @@ class Play:
             self.game_setup()
         else:
             self.rules()
+
+    def game_setup(self):
+        """
+        Setup of the computer and player Battleships.
+        Once the board size is set the computer can auto build a board.
+        """
+        Battleships.set_board_size()
+        self.player.create_board()
+        self.computer.create_board()
+        self.computer.auto_ship_placements()
+        self.player.choose_ship_placement()
+        self.play_game()
+
+    def game_display(self):
+        """
+        Displays the two game boards and their respective ships remaining.
+        Displays the game message.
+        """
+        wipe_terminal()
+        self.player.guess_board_display()
+        print('')
+        print(f'Enemy Ships: {self.computer.ships}')
+        print('')
+        self.player.player_board_display()
+        print('')
+        print(f'Friendly Ships: {self.player.ships}')
+        print('')
+        print(self.game_message)
+        print('')
+
+    def choose_fire_mode(self):
+        """"
+        A choice of automatic or manual fire modes.
+        Forces inputs of A or M.
+        """
+        self.game_display()
+        user_input = input(
+            'Enter A to auto fire / Enter M to input your coordinates')
+        user_input = user_input.upper()
+        if user_input in ('A', 'M'):
+            if user_input == 'A':
+                self.auto_fire()
+            elif user_input == 'M':
+                self.manual_fire()
+        else:
+            self.choose_fire_mode()
+
+    def manual_fire(self):
+        """
+        Fire on a position at the given coordinates.
+        Raises a key error where an invalid key has been used as the coordinate.
+        Will not allow to fire on a position already fired upon.
+        """
+        self.game_message = 'Take aim !'
+        while True:
+            try:
+                while True:
+                    self.game_display()
+                    key = input('Enter the coordinates for your missile !')
+                    key = key.upper()
+                    if key not in self.computer.player_board:
+                        raise KeyError
+                    break
+                if self.player.guess_board.get(key) in ('O', '*'):
+                    self.game_message = f'You already fired at position {
+                        key}, silly !'
+                    self.game_display()
+                    input('Press Enter to try again !\n')
+                    self.game_message = 'Take aim !'
+                    self.manual_fire()
+                elif self.computer.player_board.get(key) == '^':
+                    self.game_message = 'Firing your missile...'
+                    self.game_display()
+                    sleep(3)
+                    self.player.guess_board.update({key: '*'})
+                    self.computer.ships -= 1
+                    self.game_message = f'You fired at coordinates {
+                        key} and HIT !'
+                    self.game_display()
+                elif self.computer.player_board.get(key) == 'W':
+                    self.game_message = 'Firing your missile...'
+                    self.game_display()
+                    sleep(3)
+                    self.player.guess_board.update({key: 'O'})
+                    self.game_message = f'You fired at coordinates {
+                        key} and missed !'
+                    self.game_display()
+            except KeyError:
+                self.game_message = f"The coordinates '{
+                    key}' you entered are invalid !"
+                self.game_display()
+                print('Letter followed by number - And must be a valid coordinate on the board.\n'
+                      '\n'
+                      'Example: A1, A2 etc. - And not fired upon previously.\n'
+                      )
+                input('Press Enter to try again.')
+                self.manual_fire()
+            break
 
     def game_setup(self):
         """
