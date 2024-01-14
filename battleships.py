@@ -1,6 +1,5 @@
 """
-Random is used for generating random coordinates.
-os is used for wiping te terminal.
+Random module is used for generating random coordinates.
 """
 import random
 import os
@@ -217,3 +216,6 @@ class Battleships:
         else:
             wipe_terminal()
             self.choose_ship_placement()
+
+
+# player = Battleships()

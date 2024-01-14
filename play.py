@@ -1,5 +1,7 @@
 """
-random is used for generating random keys.
+OS module is used for clearing the terminal.
+Wait from the keyboard module is used for halting program execution
+until there has been keyboard interaction from the user.
 """
 from time import sleep
 import random
@@ -8,8 +10,8 @@ from battleships import Battleships, wipe_terminal
 
 class Play:
     """
-    Play's a game between two Battleship objects.
-    Player vs Computer.    
+    Creates a game between two Battleship objects.
+    Player vs Computer.
     """
 
     def __init__(self):
@@ -280,7 +282,7 @@ class Play:
                 break
         self.game_over(winner)
 
-def game_over(self, winner):
+    def game_over(self, winner):
         """
         Displays the game winner message.
         Can reset the previous game, allowing for new ship placements.
@@ -318,7 +320,10 @@ def game_over(self, winner):
         else:
             self.game_over(winner)
 
-    def game_setup(self):
+    def quit(self):
         """
+        Quit the game.
         """
-
+        wipe_terminal()
+        print('')
+        print('Goodbye..')
