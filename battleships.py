@@ -1,5 +1,7 @@
 """
+Random module is used for generating random coordinates.
 """
+import random
 import os
 
 
@@ -122,12 +124,12 @@ class Battleships:
         keys = []
         counter = 0
         while counter < self.ships:
-        for item in player_board:
-            keys.append(item)
-        key = random.choice(keys)
-        if self.player_board.get(key) != '^':
-            counter += 1
-            self.player_board.update({key: '^'})
+            for item in player_board:
+                keys.append(item)
+            key = random.choice(keys)
+            if self.player_board.get(key) != '^':
+                counter += 1
+                self.player_board.update({key: '^'})
 
     def invalid_coordinates(self, key):
         """
@@ -143,3 +145,38 @@ class Battleships:
         print('Coordinates must have the form of letter then number, as above.\n'
               'Letters are not case sensitive.')
         print('')
+
+    def manual_ship_placement(self):
+        """
+        Manually place a player's ships to their desired coordinates.
+        Raises a key error where an invalid key has been used as the coordinate.        
+        Places the required number of ships for a game size.        
+        """
+        ship_number = 1
+        counter = 0
+        while counter < self.ships:
+            try:
+                wipe_terminal()
+                self.player_board_display()
+                print('')
+                print(f'Enemy Ships: {self.ships}')
+                print('')
+                input_str = input(
+                    f'Enter the coordinates for ship number {ship_number}.\n')
+                key = input_str.upper()
+                if key not in self.player_board:
+                    raise KeyError
+                if self.player_board.get(key) == '^':
+                    wipe_terminal()
+                    print(f'A ship is already at position {key}, silly ! \n')
+                    input('Press Enter to try again.')
+                else:
+                    self.player_board.update({key: '^'})
+                    ship_number += 1
+                    counter += 1
+            except KeyError:
+                wipe_terminal()
+                self.invalid_coordinates(key)
+                input('Press Enter to try again.')
+        wipe_terminal()
+        print(self.player_board_display)
