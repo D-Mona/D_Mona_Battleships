@@ -55,3 +55,20 @@ class Battleships:
             self.letter_overlay = '  A B C D E F G H I J'
             self.player_board = self.populate_board()
             self.guess_board = self.populate_board()
+
+    def populate_board(self):
+        """
+        Populates a board appropriately for the required size of the game.
+        Creates key-value pairs, used for accessing coordinates during a game.
+        Populates all values with W  - Representing the waves/empty positions.
+        """
+        board = {}
+        numbers = ('1', '2', '3', '4', '5')
+        # letters2 = string.ascii_uppercase
+        letters = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J')
+        # Will populate the given amount of rows and columns stored in dimensions.
+        # Dimensions was set by game size.
+        for number in range(self.dimensions[0]):
+            for letter in range(self.dimensions[1]):
+                board.update({f'{letters[letter]}{numbers[number]}': 'W'})
+        return board
