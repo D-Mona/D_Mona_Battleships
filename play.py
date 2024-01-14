@@ -19,6 +19,24 @@ class Play:
         self.game_message = 'Fire your missile !'
         self.begin_game()
 
+    def begin_game(self):
+        """
+        Welcome the user and provide options to see the rules or setup the game.
+        Forces inputs of R or S.
+        """
+        wipe_terminal()
+        print('Welcome to this simple command line Battleships game...\n')
+        print('')
+        user_input = input('Enter S for Setup / Enter R for Rules\n')
+        user_input = user_input.upper()
+        if user_input in ('R', 'S'):
+            if user_input == 'R':
+                self.rules()
+            else:
+                self.game_setup()
+        else:
+            self.begin_game()
+
     def rules(self):
         """
         Displays the rules of the game.
