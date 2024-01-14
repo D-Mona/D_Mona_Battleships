@@ -230,7 +230,33 @@ class Play:
         self.game_message = f"You fired at coordinates {key} and {outcome} !"
         self.game_display()
 
-
+    def bot_fire(self):
+        """
+        Automatically selects a turn for the computer.        
+        Will only fire upon a position that is unknown.
+        Updates game boards, game message and ships remaining.
+        """
+        keys = []
+        for item in self.computer.player_board:
+            keys.append(item)
+        while True:
+            key = random.choice(keys)
+            if self.player.player_board.get(key) not in ('O', '*'):
+                self.game_display()
+                print('Bot firing missile...')
+                print('')
+                sleep(3)
+                if self.player.player_board.get(key) == '^':
+                    self.player.player_board.update({key: '*'})
+                    self.player.ships -= 1
+                    self.game_message = f"Bot fired at coordinates {
+                        key} and HIT !"
+                elif self.player.player_board.get(key) == 'W':
+                    self.player.player_board.update({key: 'O'})
+                    self.game_message = f"Bot fired at coordinates {
+                        key} and missed"
+                break
+        self.game_display()
 
     def game_setup(self):
         """
