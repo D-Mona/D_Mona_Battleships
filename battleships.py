@@ -180,3 +180,21 @@ class Battleships:
                 input('Press Enter to try again.')
         wipe_terminal()
         print(self.player_board_display)
+
+    def choose_ship_placement(self):
+        """
+        Choose auto or manual ship placements.
+        Only accepts A or M or is recalled.
+        """
+        user_input = input(
+            'Enter A for automatic ship placements / Enter M for manual ship placements\n'
+        )
+        user_input = user_input.upper()
+        if user_input in ('A', 'M'):
+            if user_input == 'A':
+                self.auto_ship_placements()
+            elif user_input == 'M':
+                self.manual_ship_placement()
+        else:
+            wipe_terminal()
+            self.choose_ship_placement()
