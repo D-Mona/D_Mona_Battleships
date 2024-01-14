@@ -78,5 +78,5 @@ class Play:
         """
 
 
-play = Play()
-play.rules()
+# play = Play()
+# play.rules()
