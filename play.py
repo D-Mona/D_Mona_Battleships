@@ -1,6 +1,6 @@
 """
 OS is used for clearing the terminal.
-time is used to delay the resluts of the shots
+time is used to delay the results of the shots
 sys is to cleanly exit the program.
 """
 from time import sleep

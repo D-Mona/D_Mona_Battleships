@@ -1,31 +1,95 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Command Line Battleships Game
 
-Welcome USER_NAME,
+A simple command line Battleships game.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+A user can play against the computer, firing missiles at guessed coordinates.
 
-## Reminders
+The first player to destroy all of the enemy's ships is declared the winner.
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+![Game](images/game.jpg)
 
-## Creating the Heroku app
+## Game Features
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+- **Automatic or manual ship placements**
 
-1. `heroku/python`
-2. `heroku/nodejs`
+  - A user can choose to automatically place their ships.
+  - A user can choose to manually place their ships.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+  ![Ship placement](images/ship_placement.jpg)
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+- **Automatic or manual fire**
 
-Connect your GitHub repository and deploy as normal.
+  - A user can choose to automatically fire their missile.
+  - A user can choose to manually fire their missile.
 
-## Constraints
+![Enter name button](images/manual_auto_fire.jpg)
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- **Scoreboard**
 
------
-Happy coding!
+  - A scoreboard keeps track of each of the players ships.
+
+![Scoreboard](images/scoreboard.jpg)
+
+- **Coordinate validation checker**
+
+   - Ensures users can only enter valid coordinates on the board.
+
+![Validation](images/key_error.jpg)
+
+- **Rules**
+
+  - A rules section explains how the game works.
+
+![Rules](images/rules.jpg)
+
+- **Time based turns**
+
+  - The game alternates between player and computer in a timed fashion, generating some suspense..
+  - Information relating to the last shot is maintained between turns.
+
+![Time](images/time.jpg)
+
+
+- ### **Future features**
+  - Round scores.
+  - More interesting presentation.
+
+- ### **Unfixed bugs**
+  - None.
+
+- ### **Target Audiences**
+
+  - Battleships fanatics.
+  - Gaming addicts with defective graphics cards.
+
+- ### **Design**
+
+  - The game is based on two classes.
+  - The Battleships class builds game boards and is an instance of both a player and their board.
+  - The Play class is used to pit the Battleships classes against one another and to display in game information and choices.
+  - There is error checking on the coordinates entered by a user for firing and ship placements only.
+  - I chose to force inputs in the main so that the game has a decent pace. 
+
+- ### **Testing**
+
+  - Tested in my local terminal and the Code Institute Heroku terminal.
+  - Cannot enter invalid coordinates for a board.
+  - I tested that all of the features perform as intended.
+
+- ### **Validator Testing**
+
+- PEP8
+  - No errors when checked on - https://www.pythonchecker.com/
+
+  ![Validationt](images/pep8.jpg)
+
+- ### **Deployment**
+
+  - Code Institute Python essentials template required.
+  - Create a new Heroku app.
+  - Set the buildpacks to Python and NodeJS in that order.
+  - Link the Heroku app to the repository.
+  - Click deploy.  
+
+- The Github link can be found here - https://github.com/D-Mona/D_Mona_Battleships
+- the Heroku link can be found here - https://dmonabattleships-9dbe2def89dc.herokuapp.com/
